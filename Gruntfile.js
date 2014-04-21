@@ -71,6 +71,7 @@ module.exports = function (grunt) {
                 globalstrict: true,
                 trailing: true,
                 node: true,
+                loopfunc: true,
                 globals: {
                     screen: true,
                     navigator: true,

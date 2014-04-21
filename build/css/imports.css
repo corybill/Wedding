@@ -1170,6 +1170,19 @@ body {
   font-size: 25px;
 }
 
+/* line 18 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\image.styl */
+
+/* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\image.styl */
+
+/* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\image.styl */
+
+.image img {
+  position: absolute;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+}
+
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\mainMedia.styl */
 
 @media screen and (max-device-width: 800px) {

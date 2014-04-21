@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 "use strict";
+
+/**
+ * This controller is not properly used.  Directive Controllers should be used as an API to be referenced by all instances of the directive.
+ */
 module.exports = function ($scope, $personService, $attrs) {
 
     function init() {

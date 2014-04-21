@@ -8,7 +8,8 @@ var includes = [
     require('../../modules/gallery/client')(ang),
     require('../../modules/home/client')(ang),
     require('../../modules/registry/client')(ang),
-    require('../../modules/story/client')(ang)
+    require('../../modules/story/client')(ang),
+    require('../../modules/proposal/client')(ang)
 ];
 
 var moduleName = "justineAndCorybill";
