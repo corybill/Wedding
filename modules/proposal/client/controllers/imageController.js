@@ -41,7 +41,7 @@ module.exports = function ($window) {
 
     this.getAndIncrementImageMoveTime = function () {
         return imageMoveTimes[currentImageMoveIndex++];
-    }
+    };
 
     function calculatePositions() {
         var min = buffer + "px";

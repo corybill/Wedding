@@ -67,7 +67,7 @@ module.exports = function (scope, $element, attrs, imageController) {
         }
     }
     function changeImage() {
-        var css = $image.css(["left","top"])
+        var css = $image.css(["left","top"]);
         incrementCurrentImage();
         setDomImage();
         $image = $element.find('img');
@@ -76,7 +76,7 @@ module.exports = function (scope, $element, attrs, imageController) {
     function flipImage(duration) {
         var deferred = $.Deferred();
 
-        $image.flippy({direction: "RIGHT", duration: duration, depth: .05, onFinish: function () {
+        $image.flippy({direction: "RIGHT", duration: duration, depth: 0.05, onFinish: function () {
             changeImage();
             deferred.resolve();
         }});
@@ -94,7 +94,7 @@ module.exports = function (scope, $element, attrs, imageController) {
 
         $el.animate(style, time, function () {
             deferred.resolve();
-        })
+        });
 
         return deferred.promise();
     }
@@ -121,9 +121,9 @@ module.exports = function (scope, $element, attrs, imageController) {
         }).then(function () {
             return flipImage(1000);
         }).then(function () {
-            return incrementAndExecute()
+            return incrementAndExecute();
         }).then(function () {
-            return incrementAndExecute()
+            return incrementAndExecute();
         });
     });
 

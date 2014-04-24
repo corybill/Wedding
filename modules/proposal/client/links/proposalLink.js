@@ -15,7 +15,7 @@ module.exports = function (scope, element, attrs) {
     });
 
     function playAndGo() {
-        $("#player")[0].volume = .25;
+        $("#player")[0].volume = 0.25;
         $("#player")[0].play();
 
         //startChorusTimer();
