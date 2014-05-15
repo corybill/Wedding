@@ -27,7 +27,7 @@ module.exports = function (scope, $element, attrs, imageController) {
         $image.load(function () {
             images.push($image);
             if (images.length === imageCount) {
-                scope.$emit("ProposalImagesLoaded");
+                scope.$emit("Loaded:Image");
             } else if (images.length === 1) {
                 setDomImage();
             }
@@ -74,57 +74,137 @@ module.exports = function (scope, $element, attrs, imageController) {
         $image.css(css);
     }
     function flipImage(duration) {
-        var deferred = $.Deferred();
-
-        $image.flippy({direction: "RIGHT", duration: duration, depth: 0.05, onFinish: function () {
+        $image.flippy({direction: "RIGHT", duration: duration, onFinish: function () {
             changeImage();
-            deferred.resolve();
         }});
-
-        return deferred.promise();
     }
 
-    function incrementAndExecute() {
+    function flipImageAndAnimate() {
+        $image.flippy({direction: "RIGHT", duration: 1000, onFinish: function () {
+            changeImage();
+            incrementAndExecute(24000);
+        }});
+    }
+
+    function incrementAndExecute(time) {
         incrementPosition();
         var style = imageController.getPositionStyle(position);
-        return animatePromise($image, style, imageController.getAndIncrementImageMoveTime());
+        return animatePromise($image, style, time);
     }
     function animatePromise($el, style, time) {
-        var deferred = $.Deferred();
-
-        $el.animate(style, time, function () {
-            deferred.resolve();
-        });
-
-        return deferred.promise();
+        $el.animate(style, time);
     }
 
-    scope.$on("ImageFloater:InitialPosition", function () {
+    scope.$on("InitialPosition:ImageFloater", function () {
         $image = $element.find('img');
 
         var style = imageController.getPositionStyle(position);
         var midStyle = imageController.getMidPositionStyle(position);
-        animatePromise($image, style, 1000).then(function () {
-            return animatePromise($image, midStyle, 1000);
-        }).then(function () {
-            return imageController.wait(6800);
-        }).then(function () {
-            return flipImage(1000);
-        }).then(function () {
-            return imageController.wait(5500);
-        }).then(function () {
-            return flipImage(1000);
-        }).then(function () {
-            return imageController.wait(8800);
-        }).then(function () {
-            return animatePromise($image, style, 3400);
-        }).then(function () {
-            return flipImage(1000);
-        }).then(function () {
-            return incrementAndExecute();
-        }).then(function () {
-            return incrementAndExecute();
-        });
+
+        //Move to Corners
+        setTimeout(function () {
+            animatePromise($image, style, 1000);
+        }, 0);
+
+        //Move to center positions
+        setTimeout(function () {
+            animatePromise($image, midStyle, 1000);
+        }, 1000);
+
+        //Flip 1 out of 2
+        setTimeout(function () {
+            flipImage(1000);
+        }, 8910);
+
+        //Flip 2 out of 2
+        setTimeout(function () {
+            flipImage(1000);
+        }, 15540);
+
+        //Move to starting positions
+        setTimeout(function () {
+            animatePromise($image, style, 3000);
+        }, 25470);
+
+        //Start flip and animate 1 out of 4
+        setTimeout(function () {
+            flipImageAndAnimate();
+        }, 28740);
+
+        //Start flip and animate 2 out of 4
+        setTimeout(function () {
+            flipImageAndAnimate();
+        }, 55090);
+
+        //Let It Be Me Sequence 1 out of 2
+        setTimeout(function () {
+            flipImage(3000);
+        }, 108500);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 115260);
+/*        setTimeout(function () {
+            flipImage(3000);
+        }, 121970);*/
+        setTimeout(function () {
+            flipImage(3000);
+        }, 128970);
+
+        //Start flip and animate 3 out of 4
+        setTimeout(function () {
+            flipImageAndAnimate();
+        }, 135500);
+
+        //Start flip and animate 4 out of 4
+        setTimeout(function () {
+            flipImageAndAnimate();
+        }, 162500);
+
+        //Let It Be Me Sequence 2 out of 2
+        setTimeout(function () {
+            flipImage(3000);
+        }, 216010);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 222740);
+/*        setTimeout(function () {
+            flipImage(3000);
+        }, 229420);*/
+        setTimeout(function () {
+            flipImage(3000);
+        }, 236070);
+
+        //Move to center positions
+        setTimeout(function () {
+            animatePromise($image, midStyle, 3000);
+        }, 242880);
+
+        //Ending Continuous Flip Sequence
+        setTimeout(function () {
+            flipImage(3000);
+        }, 246000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 251000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 256000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 261000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 266000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 271000);
+        setTimeout(function () {
+            flipImage(3000);
+        }, 276000);
+    });
+
+    scope.$on("Hide:Images", function () {
+        $image.fadeOut(3000);
     });
 
     fetchAllImages(scope);

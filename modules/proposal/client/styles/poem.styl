@@ -1,0 +1,40 @@
+.poem
+    display: none
+    text-align: left
+    width: 400px
+    position: absolute
+    top: 220px
+    font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif
+
+.title
+    color: #000
+    font-size: 34px
+    line-height: 1.2
+    margin-bottom: 10px
+    text-align: center
+
+.name
+    color: #666
+    font-size: 20px
+    font-style: italic
+    margin-bottom: 30px
+    text-align: center
+
+    &:before
+        content: '— '
+    &:after
+        content: ' —'
+
+.poem h2 + p:first-letter 
+    float: left
+    font-size: 38px
+    line-height: 1
+    margin: 2px 5px 0 0
+
+.poem p:first-line 
+    font-variant: small-caps
+    letter-spacing: 1px
+
+.poem p:last-child 
+    margin-bottom: 30px
+    padding-bottom: 30px

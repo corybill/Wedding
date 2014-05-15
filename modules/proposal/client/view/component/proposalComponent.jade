@@ -1,9 +1,15 @@
 div.container
 
-  audio#player(style='width: 0px; height: 0px;', controls='controls') Canvas not supported
+    audio#player(style='width: 0px; height: 0px;', controls='controls') Canvas not supported
           source#musicSource(src='audio/proposal/Let_It_Be_Me.mp3', type='audio/mpeg')
 
-  div.images
+    div.lyrics-container
+        lyrics()
+        
+    div.poem-container
+        poem()
+
+    div.images
       image-floater(start="1", end="10", position="0")
       image-floater(start="11", end="20", position="1")
       image-floater(start="21", end="29", position="2")
