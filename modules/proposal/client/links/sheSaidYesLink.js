@@ -1,5 +1,37 @@
 "use strict";
 
+/*
+ * The Fireworks items in this code are based off of Kenneth Kufluk's Fireworks.js library.  I made quite a few
+ * changes but his work undoubtedly saved me hours, so thank you Kenneth.  The license of his work is found below.
+ * I also added into the Angular workflow of this application.
+ *
+ * fireworks.js - Kenneth Kufluk (http://kenneth.kufluk.com/)
+ * http://js-fireworks.appspot.com/
+ * MIT (X11) Licensed
+
+ Copyright (c) 2010 Kenneth Kufluk
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+
+ *
+ */
+
 module.exports = function (scope, $element, attrs) {
 
     scope.$on("Start:SheSaidYes", function () {
@@ -48,14 +80,14 @@ module.exports = function (scope, $element, attrs) {
 };
 
 var FireworkDisplay = {
-    GRAVITY : 5,
-    FRAME_RATE : 50,
+    GRAVITY : 8,
+    FRAME_RATE : 30,
     DEPLOYMENT_RATE : 10,
-    FIREWORK_SPEED : 1.5,
+    FIREWORK_SPEED : 2,
     DISPERSION_WIDTH : 1,
     DISPERSION_HEIGHT : 2,
     FIREWORK_PAYLOAD : 30,
-    FRAGMENT_SPREAD : 10,
+    FRAGMENT_SPREAD : 8,
     TEXT_LINE_HEIGHT : 100,
     FIREWORK_READY : 0,
     FIREWORK_LAUNCHED : 1,
@@ -245,10 +277,10 @@ var Firework = function(index) {
     this.x = FireworkDisplay.canvaswidth / 2;
     this.y = 0;
     this.status = FireworkDisplay.FIREWORK_READY;
-    this.brightness = 1000;
-    this.r = 100;
-    this.g = 150;
-    this.b = 200;
+    this.brightness = 500;
+    this.r = 1;
+    this.g = 1;
+    this.b = 1;
     this.start = {x:0, y:0};
     this.previous = 0;
 }
