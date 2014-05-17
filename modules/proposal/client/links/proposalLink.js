@@ -10,9 +10,8 @@ module.exports = function (scope, element, attrs) {
     scope.$on("Loaded:Image", function () {
         imagesReadyCount++;
         if (imagesReadyCount === 4) {
-            //scope.$broadcast("InitialPosition:ImageFloater");
-            //setTimeout(playAndGo, 2000);
-            handleEndOfLetItBeMe();
+            scope.$broadcast("InitialPosition:ImageFloater");
+            setTimeout(playAndGo, 2000);
         }
     });
 

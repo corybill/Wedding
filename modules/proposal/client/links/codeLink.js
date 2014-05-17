@@ -7,8 +7,7 @@ module.exports = function (scope, $element, attrs) {
     scope.$on("End:LetItBeMe", function () {
         setTimeout(function () {
             $code.fadeIn(3000);
-        }, 0);
-        //}, 44000);
+        }, 44000);
     });
 
     scope.sheSaidYes = function () {
