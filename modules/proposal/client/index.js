@@ -16,6 +16,8 @@ module.exports = function (angular) {
         .directive("imageFloater", require("./directives/imageDirective"))
         .directive("poem", require("./directives/poemDirective"))
         .directive("lyrics", require("./directives/lyricsDirective"))
+        .directive("code", require("./directives/codeDirective"))
+        .directive("sheSaidYes", require("./directives/sheSaidYesDirective"))
         .config(function ($routeProvider) {
             $routeProvider
                 .when("/proposal", {templateUrl: "proposal"});

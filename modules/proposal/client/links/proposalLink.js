@@ -10,9 +10,15 @@ module.exports = function (scope, element, attrs) {
     scope.$on("Loaded:Image", function () {
         imagesReadyCount++;
         if (imagesReadyCount === 4) {
-            scope.$broadcast("InitialPosition:ImageFloater");
-            setTimeout(playAndGo, 2000);
+            //scope.$broadcast("InitialPosition:ImageFloater");
+            //setTimeout(playAndGo, 2000);
+            handleEndOfLetItBeMe();
         }
+    });
+
+    scope.$on("Update:SheSaidYes", function () {
+        cancelOceanWaves();
+        scope.$broadcast("Start:SheSaidYes");
     });
 
     function playAndGo() {
@@ -47,5 +53,9 @@ module.exports = function (scope, element, attrs) {
     function playOceanWaves() {
         $player[0].setAttribute("src", "audio/proposal/Ocean_Waves.mp3");
         $player[0].play();
+    }
+
+    function cancelOceanWaves() {
+        $player.off("ended", playOceanWaves);
     }
 };

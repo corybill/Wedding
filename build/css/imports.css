@@ -1305,6 +1305,63 @@ body {
   font-size: 1px;
 }
 
+/* line 36 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+/* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+/* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+.proposing .code {
+  display: none;
+  font-size: 90px;
+  width: 450px;
+  position: absolute;
+}
+
+/* line 8 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+.proposing .code .inner {
+  margin-left: 30px;
+}
+
+/* line 11 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+.proposing .code .inner a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* line 15 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\code.styl */
+
+.proposing .middle-finger {
+  display: none;
+  position: absolute;
+}
+
+/* line 18 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\sheSaidYes.styl */
+
+/* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\sheSaidYes.styl */
+
+.she-said-yes {
+  display: none;
+  background: url("../images/proposal/38.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 10 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\sheSaidYes.styl */
+
+.she-said-yes #cv {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: -600px;
+  top: -100px;
+}
+
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\mainMedia.styl */
 
 @media screen and (max-device-width: 800px) {

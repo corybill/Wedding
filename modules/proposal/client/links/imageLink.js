@@ -204,6 +204,7 @@ module.exports = function (scope, $element, attrs, imageController) {
     });
 
     scope.$on("Hide:Images", function () {
+        $image = $element.find('img');
         $image.fadeOut(3000);
     });
 

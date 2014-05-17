@@ -281,7 +281,8 @@ module.exports = function (scope, $element, attrs, lyricsController) {
         }, 57730);
     });
 
-    scope.$on("End:LetItBeMe", function () {
+    scope.$on("End:LetItBeMe-FAKE", function () {
+        $center.css({width : 200});
         prepareLyricsModule();
 
         //And now it is my turn - Fade in
