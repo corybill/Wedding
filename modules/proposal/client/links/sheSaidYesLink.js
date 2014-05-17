@@ -51,7 +51,7 @@ module.exports = function (scope, $element, attrs) {
         var $player = $("#player");
 
         function startPlayer() {
-            $player[0].volume = .50;
+            $player[0].volume = 0.50;
             $player[0].setAttribute("src", "audio/proposal/" + songs[playerIndex] + ".mp3");
             $player[0].play();
             $player.on("ended", nextSong);
@@ -76,7 +76,7 @@ module.exports = function (scope, $element, attrs) {
 
         startPlayer();
         continuousLoop();
-    };
+    }
 };
 
 var FireworkDisplay = {
@@ -99,7 +99,7 @@ var FireworkDisplay = {
     ctx : 0,
     blockPointer : 0,
     fireworks : [],
-    allBlocks : new Array(),
+    allBlocks : [],
     gameloop : 1,
     $fireCount : $('#fireCount'),
     fireTextMessage : "SHE SAID YES",
@@ -108,8 +108,8 @@ var FireworkDisplay = {
         this.ctx.clearRect(0, 0, this.canvaswidth, this.canvasheight);
         var firecount = 0;
         for (var i=0;i<this.fireworks.length;i++) {
-            if (this.fireworks[i]==null) continue;
-            if (this.fireworks[i].status!=this.FIREWORK_EXPLODED) {
+            if (this.fireworks[i] === null) continue;
+            if (this.fireworks[i].status !== this.FIREWORK_EXPLODED) {
                 firecount++;
             }
             this.displayFirework(this.fireworks[i]);
@@ -137,9 +137,7 @@ var FireworkDisplay = {
         clearTimeout(this.gameloop);
         //CANVAS
         this.canvas = $("#cv").get(0);
-        if (typeof G_vmlCanvasManager != "undefined") {
-            this.canvas = G_vmlCanvasManager.initElement(this.canvas);
-        }
+
         this.ctx = this.canvas.getContext("2d");
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.lineWidth = "2";
@@ -148,44 +146,44 @@ var FireworkDisplay = {
         this.canvasheight = screen.availHeight;
 
         var totalHeightOffset = 0;
-        var totalWidthOffset = new Array();
+        var totalWidthOffset = [];
         var widthCounter = 0;
         totalWidthOffset[widthCounter] = 0;
         for (var i=0;i< this.fireTextMessage.length;i++) {
-            if (this.fireTextMessage.charAt(i)==' ') {
+            if (this.fireTextMessage.charAt(i) === ' ') {
                 totalHeightOffset += this.TEXT_LINE_HEIGHT;
                 widthCounter++;
                 totalWidthOffset[widthCounter] = 0;
             } else {
-                var maxWidthOffset = 0;
+                var maxWidthOffsetA = 0;
                 for (var j=0;j<FONT_FIREWORK[this.fireTextMessage.charAt(i)].length;j++) {
-                    var chararr = FONT_FIREWORK[this.fireTextMessage.charAt(i)][j];
-                    maxWidthOffset = Math.max(maxWidthOffset, chararr[0]);
+                    var chararrA = FONT_FIREWORK[this.fireTextMessage.charAt(i)][j];
+                    maxWidthOffsetA = Math.max(maxWidthOffsetA, chararrA[0]);
                 }
-                totalWidthOffset[widthCounter] += maxWidthOffset + 40;
+                totalWidthOffset[widthCounter] += maxWidthOffsetA + 40;
             }
         }
 
 
-        this.allBlocks = new Array();
+        this.allBlocks = [];
         var windowHeight = screen.availHeight;
         var offsetTop = totalHeightOffset;
         offsetTop += (windowHeight-totalHeightOffset)/6;
         var offsetLeft = 0;
         var heightOffsetCount = 0;
-        for (var i=0;i<this.fireTextMessage.length;i++) {
-            if (this.fireTextMessage.charAt(i)==' ') {
+        for (i=0;i<this.fireTextMessage.length;i++) {
+            if (this.fireTextMessage.charAt(i) === ' ') {
                 heightOffsetCount++;
                 offsetTop = offsetTop - this.TEXT_LINE_HEIGHT;
                 offsetLeft = 0;
             } else {
-                var maxWidthOffset = 0;
-                for (var j=0;j<FONT_FIREWORK[this.fireTextMessage.charAt(i)].length;j++) {
-                    var chararr = FONT_FIREWORK[this.fireTextMessage.charAt(i)][j];
-                    this.allBlocks[this.allBlocks.length] = [(chararr[0]+offsetLeft)-(totalWidthOffset[heightOffsetCount]/2), chararr[1]-offsetTop];
-                    maxWidthOffset = Math.max(maxWidthOffset, chararr[0]);
+                var maxWidthOffsetB = 0;
+                for (var h=0; h<FONT_FIREWORK[this.fireTextMessage.charAt(i)].length; h++) {
+                    var chararrB = FONT_FIREWORK[this.fireTextMessage.charAt(i)][h];
+                    this.allBlocks[this.allBlocks.length] = [(chararrB[0]+offsetLeft)-(totalWidthOffset[heightOffsetCount]/2), chararrB[1]-offsetTop];
+                    maxWidthOffsetB = Math.max(maxWidthOffsetB, chararrB[0]);
                 }
-                offsetLeft += maxWidthOffset+40;  //plus character spacing
+                offsetLeft += maxWidthOffsetB+40;  //plus character spacing
             }
         }
 
@@ -227,7 +225,7 @@ var FireworkDisplay = {
     },
     displayFirework : function(fw, speed) {
         if (fw.y<0) this.destroyFirework(fw);
-        if (fw.status==this.FIREWORK_EXPLODED) {
+        if (fw.status === this.FIREWORK_EXPLODED) {
             this.ctx.beginPath();
             this.ctx.fillStyle = "rgb(0, 0, 0)";
             var radius         = 7;                    // Arc radius
@@ -241,14 +239,14 @@ var FireworkDisplay = {
         fw.colour = "rgb(80, 80, 80)";
         this.ctx.strokeStyle = fw.colour;
         var forces = {x:0,y:-0.05};
-        if (fw.status==this.FIREWORK_FRAGMENT) {
+        if (fw.status === this.FIREWORK_FRAGMENT) {
             forces.y = this.GRAVITY/-100;
             fw.colour = "rgb("+Math.round(fw.r*fw.brightness)+", "+Math.round(fw.g*fw.brightness)+", "+Math.round(fw.b*fw.brightness)+")";
             this.ctx.strokeStyle = fw.colour;
             fw.brightness-=5;
             if (fw.brightness<0) this.destroyFirework(fw);
         }
-        if (fw.dy<-1 && fw.status==this.FIREWORK_LAUNCHED) {
+        if (fw.dy<-1 && fw.status === this.FIREWORK_LAUNCHED) {
             this.explodeFirework(fw);
         }
         fw.start = {x:fw.x, y:fw.y};
@@ -268,7 +266,7 @@ var FireworkDisplay = {
         }
         fw.previous = {x:fw.start.x, y:fw.start.y};
     }
-}
+};
 
 var Firework = function(index) {
     this.index = index;
@@ -283,7 +281,7 @@ var Firework = function(index) {
     this.b = 1;
     this.start = {x:0, y:0};
     this.previous = 0;
-}
+};
 
 // Home-made point-based font.
 var FONT_FIREWORK = {
@@ -295,4 +293,4 @@ var FONT_FIREWORK = {
     "I":[[25,-40],[15,-40],[5,-40],[15,-30],[15,-20],[15,-10],[25,0],[15,0],[5,0]],
     "D":[[35,-30],[25,-40],[15,-40],[35,-20],[5,-40],[35,-10],[5,-30],[5,-20],[25,0],[5,-10],[15,0],[5,0]],
     "Y":[[35,-40],[35,-30],[5,-40],[25,-20],[5,-30],[15,-20],[20,-10],[20,0]]
-}
+};
