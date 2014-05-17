@@ -1,3 +1,6 @@
+This module was originally its own project.  I wrote it as a proposal application and used it to propose to my wife.
+I added into this application so relatives could view it if they knew the link.
+
 The Fireworks.js library was based off of Kenneth Kufluk's Fireworks.js.  I made quite a few changes but his work
 undoubtedly saved me hours, so thank you Kenneth.  The license of his work is found below.
 

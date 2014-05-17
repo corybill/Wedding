@@ -62,7 +62,7 @@ module.exports = function (scope, $element, attrs) {
             FireworkDisplay.launchText();
             setTimeout(function (){
                 continuousLoop();
-            }, 35000);
+            }, 25000);
         }
 
         function nextSong () {

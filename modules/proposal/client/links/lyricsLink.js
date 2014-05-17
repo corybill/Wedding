@@ -281,7 +281,7 @@ module.exports = function (scope, $element, attrs, lyricsController) {
         }, 57730);
     });
 
-    scope.$on("End:LetItBeMe-FAKE", function () {
+    scope.$on("End:LetItBeMe", function () {
         $center.css({width : 200});
         prepareLyricsModule();
 

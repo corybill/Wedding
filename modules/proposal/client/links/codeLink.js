@@ -40,7 +40,7 @@ module.exports = function (scope, $element, attrs) {
         var centerScreenHeight = (screen.availHeight / 2);
 
         var codeCenterLeft = centerScreenWidth - ($code.width() / 2);
-        var codeCenterTop = centerScreenHeight - ($code.height() / 2);
+        var codeCenterTop = centerScreenHeight - ($code.height() / 2) - 50;
         $code.css({left : codeCenterLeft, top : codeCenterTop});
     }
 
@@ -49,7 +49,7 @@ module.exports = function (scope, $element, attrs) {
         var centerScreenHeight = (screen.availHeight / 2);
 
         var fingerCenterLeft = centerScreenWidth - ($middleFinger.width() / 2);
-        var fingerCenterTop = centerScreenHeight - ($middleFinger.height() / 2);
+        var fingerCenterTop = centerScreenHeight - ($middleFinger.height() / 2) - 50;
         $middleFinger.css({left : fingerCenterLeft, top : fingerCenterTop});
     });
 
