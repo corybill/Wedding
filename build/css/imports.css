@@ -1176,18 +1176,22 @@ body {
 
 /* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\image.styl */
 
-.image img {
+/* line 3 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\image.styl */
+
+.images .image img {
   position: absolute;
   border-radius: 10px;
   width: 200px;
   height: 200px;
 }
 
-/* line 7 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 8 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.poem {
+/* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+
+.poem-container .poem {
   display: none;
   text-align: left;
   width: 410px;
@@ -1196,9 +1200,9 @@ body {
   font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif;
 }
 
-/* line 9 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 10 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.title {
+.poem-container .title {
   color: #000;
   font-size: 34px;
   line-height: 1.2;
@@ -1206,9 +1210,9 @@ body {
   text-align: center;
 }
 
-/* line 16 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 17 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.name {
+.poem-container .name {
   color: #666;
   font-size: 20px;
   font-style: italic;
@@ -1216,42 +1220,42 @@ body {
   text-align: center;
 }
 
-/* line 23 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 24 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.name:before {
+.poem-container .name:before {
   content: '— ';
 }
 
-/* line 25 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 26 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.name:after {
+.poem-container .name:after {
   content: ' —';
 }
 
-/* line 28 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 29 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.poem h2 + p:first-letter {
+.poem-container .poem h2 + p:first-letter {
   float: left;
   font-size: 38px;
   line-height: 1;
   margin: 2px 5px 0 0;
 }
 
-/* line 34 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 35 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.poem p:first-line {
+.poem-container .poem p:first-line {
   font-variant: small-caps;
   letter-spacing: 1px;
 }
 
-/* line 38 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
+/* line 39 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\poem.styl */
 
-.poem p:last-child {
+.poem-container .poem p:last-child {
   margin-bottom: 30px;
   padding-bottom: 30px;
 }
 
-/* line 41 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\lyrics.styl */
+/* line 42 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\lyrics.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\proposal\client\styles\lyrics.styl */
 
