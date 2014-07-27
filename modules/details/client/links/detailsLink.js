@@ -1,7 +1,8 @@
 "use strict";
 
+var common = require("../../../common/client/common/common");
+
 module.exports = function (scope, element, attrs) {
-    var common = require("../../../common/client/common/common");
     common.resetBackground(element);
 
     var $stayLocal = $(element.find(".details-top-links .stay-local"));
