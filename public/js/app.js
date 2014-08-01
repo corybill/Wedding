@@ -9,7 +9,8 @@ var includes = [
     require('../../modules/home/client')(ang),
     require('../../modules/registry/client')(ang),
     require('../../modules/story/client')(ang),
-    require('../../modules/proposal/client')(ang)
+    require('../../modules/proposal/client')(ang),
+    require('../../modules/rsvp/client')(ang)
 ];
 
 var moduleName = "justineAndCorybill";

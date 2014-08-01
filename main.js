@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var express = require('express'),
-  routes = require('./modules/main/server'),
+  routes = require('./modules/main/server/routes/routes'),
   http = require('http'),
   fs = require('fs'),
   path = require('path'),
@@ -33,13 +33,20 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
-app.get('/', routes.index);
-app.get('/component/:module/:component', routes.componentViews);
-
 _.forEach(fs.readdirSync("./modules/"), function (moduleName) {
     var modulePath = "/" + moduleName;
-    var componentPath = modulePath + "/:component";
+    var moduleServerPath = "./modules" + modulePath + "/server/";
+
+    //Probably should be in **module**/server but it isn't necessary to create a server for one route.
     app.get(modulePath, routes.moduleViews);
+
+    try {
+      require(moduleServerPath).addApiRoutes(app);
+    } catch (err) {
+      //Ignore unimplemented servers.
+      //console.log("moduleServerPath does not exist: " + moduleServerPath);
+      //console.log(err);
+    }
 });
 
 /**

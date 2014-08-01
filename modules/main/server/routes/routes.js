@@ -15,7 +15,7 @@ exports.moduleViews = function (req, res) {
 exports.componentViews = function (req, res) {
   var componentName = req.params.component;
   var moduleName = req.params.module;
-  var modulePath = "../modules/" + moduleName + "/client/view/component/" + componentName;
-  console.log("modulePath: " + modulePath);
-  res.render(modulePath);
+  var componentPath = "../modules/" + moduleName + "/client/view/component/" + componentName;
+  console.log("componentPath: " + componentPath);
+  res.render(componentPath);
 };

@@ -1,4 +1,11 @@
-'use strict';
+"use strict";
 
 var routes = require('./routes/routes.js');
-module.exports = routes;
+
+//These are the base routes for getting views.
+module.exports = {
+  addApiRoutes : function (app) {
+    app.get('/', routes.index);
+    app.get('/component/:module/:component', routes.componentViews);
+  }
+};

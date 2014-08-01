@@ -1,0 +1,39 @@
+.rsvp-container
+    .rsvp-background
+        img(src="images/rsvp/content-background.jpg")
+
+    .passcode-container(ng-show="userHasNotAuthenticated")
+        input.passcode-input(ng-model="passcode", placeholder="Enter Passcode.")
+        button.passcode-button(ng-click="verifyPasscode()") ENTER
+
+        br
+        br
+
+        label.passcode-wrong DUMBY!
+
+    .guest-container(ng-show="userHasAuthenticated")
+        input.rsvp-names(placeholder="Search for addressed name.")
+        br
+        br
+
+        .how-many-people(ng-show="currentPerson")
+            p.num-guests-label INCLUDING YOURSELF, HOW MANY GUESTS WILL BE CELEBRATING WITH US?
+            br
+            textarea.guest-notes
+            input.num-guests
+            button.save-guest(ng-click="verifySaving()") SAVE
+
+    .verification-container(ng-show="userSaving")
+        p.verification-label PLEASE VERIFY THAT YOU HAVE ENTERED THE CORRECT NAME AND NUMBER OF GUESTS.
+        br
+        label.verification-label.strong NAME:
+        label.verification-label {{currentPerson.name}}
+        br
+        label.verification-label.strong NUMBER OF GUESTS:
+        label.verification-label {{currentPerson.numGuests}}
+        br
+        button.cancel-save(ng-click="cancelSave()") CANCEL
+        button.confirm-save(ng-click="savePerson()") CONFIRM
+
+    p.response(ng-show="successResponse") SUCCESS! WE CAN'T WAIT TO SEE YOU!
+    p.response(ng-show="failResponse") SOMETHING WENT WRONG! REFRESH AND TRY AGAIN PLEASE.
