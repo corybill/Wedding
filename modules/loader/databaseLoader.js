@@ -29,7 +29,9 @@ function getData() {
   var names = file.split("\r\n");
   names.sort();
   var output = _.map(names, function (item) {
-    return {name: item};
+    var name = item.substring(0, item.length - 2);
+    var numInvited = parseInt(item.substring(item.length - 1));
+    return {name: name, numInvited: numInvited};
   });
 
   console.log(output);

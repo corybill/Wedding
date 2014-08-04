@@ -11,7 +11,7 @@ module.exports = function (scope, element, attrs, rsvpController) {
   var $passcodeWrong = element.find(".passcode-wrong");
   var $guestContainer = element.find(".guest-container");
   var $passcodeInput = element.find(".passcode-input");
-
+  var $guestNotesArea = element.find(".guest-notes-area");
   var peopleObj = {};
 
   scope.userHasNotAuthenticated = true;
@@ -47,8 +47,11 @@ module.exports = function (scope, element, attrs, rsvpController) {
   init();
 
   function setCurrentPerson(name) {
-    scope.currentPerson = (!name) ? name :
-      peopleObj[name.toUpperCase()];
+    scope.currentPerson = (!name) ? name : peopleObj[name.toUpperCase()];
+
+    scope.guestNotes = false;
+    scope.selectedPerson = (scope.currentPerson) ? true : false;
+
     scope.$apply();
 
     if (scope.currentPerson) {
@@ -57,6 +60,37 @@ module.exports = function (scope, element, attrs, rsvpController) {
       },500);
     }
   }
+
+  function saveSuccess(response) {
+    scope.userSaving = false;
+    scope.successResponse = true;
+    console.log("Save success: " + response);
+  }
+  function saveFail(err) {
+    scope.userSaving = false;
+    scope.failResponse = true;
+    console.log("Save fail: " + err);
+  }
+
+  scope.verifyPasscode = function () {
+    rsvpController.verifyPasscode(scope.passcode, verifyPasscodeSuccess, verifyPasscodeFail);
+  };
+
+  scope.goToGuestNotes = function () {
+    scope.currentPerson.numGuests = $numGuests.val();
+    scope.selectedPerson = false;
+    scope.guestNotes = true;
+
+    setTimeout(function () {
+      $guestNotesArea.focus();
+    },500);
+  };
+
+  scope.verifySaving = function () {
+    scope.currentPerson.notes = $guestNotesArea.val();
+    scope.userSaving = true;
+    scope.userHasAuthenticated = false;
+  };
 
   function verifyPasscodeSuccess(response) {
     if (response.result === "VALID") {
@@ -76,31 +110,14 @@ module.exports = function (scope, element, attrs, rsvpController) {
   function verifyPasscodeFail(err) {
     console.log(err);
   }
-  function saveSuccess(response) {
-    scope.userSaving = false;
-    scope.successResponse = true;
-    console.log("Save success: " + response);
-  }
-  function saveFail(err) {
-    scope.userSaving = false;
-    scope.failResponse = true;
-    console.log("Save fail: " + err);
-  }
-
-  scope.verifyPasscode = function () {
-    rsvpController.verifyPasscode(scope.passcode, verifyPasscodeSuccess, verifyPasscodeFail);
-  };
-  scope.verifySaving = function () {
-    scope.currentPerson.numGuests = $numGuests.val();
-    scope.userSaving = true;
-    scope.userHasAuthenticated = false;
-  };
 
   scope.savePerson = function () {
     rsvpController.save(scope.currentPerson, saveSuccess, saveFail);
   };
   scope.cancelSave = function () {
     scope.userSaving = false;
+    scope.selectedPerson = true;
+    scope.guestNotes = false;
     scope.userHasAuthenticated = true;
   };
 

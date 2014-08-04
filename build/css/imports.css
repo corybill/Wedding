@@ -1,4 +1,4 @@
-/* line 33 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\imports.styl */
+/* line 34 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\imports.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\node_modules\grunt-contrib-stylus\node_modules\stylus\lib\functions\index.styl */
 
@@ -1524,12 +1524,31 @@ body {
 
 /* line 70 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
-.rsvp-container .guest-container .save-guest {
+.rsvp-container .guest-container .save-next {
   height: 35px;
   margin-left: 20px;
 }
 
 /* line 74 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+
+.rsvp-container .guest-container .guest-notes-area {
+  width: 371px;
+  height: 90px;
+  border-radius: 4px;
+  font-family: MainFont;
+  font-size: 18px;
+  color: #999;
+}
+
+/* line 82 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+
+.rsvp-container .guest-container .save-guest-info {
+  width: 80px;
+  height: 35px;
+  float: right;
+}
+
+/* line 87 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container {
   position: absolute;
@@ -1537,7 +1556,7 @@ body {
   top: 200px;
 }
 
-/* line 79 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 92 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container .verification-label {
   color: #000;
@@ -1549,32 +1568,32 @@ body {
   border-radius: 5px;
 }
 
-/* line 88 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 101 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container .strong {
   font-weight: 600;
   margin-right: 15px;
 }
 
-/* line 91 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 104 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container button {
   height: 35px;
 }
 
-/* line 93 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 106 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container .confirm-save {
   margin-left: 20px;
 }
 
-/* line 95 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 108 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .verification-container .cancel-save {
   margin-left: 245px;
 }
 
-/* line 98 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 111 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .rsvp-container .response {
   position: absolute;
@@ -1589,7 +1608,7 @@ body {
   left: 300px;
 }
 
-/* line 110 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 123 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .ui-menu {
   border: 1px solid #993;
@@ -1598,7 +1617,7 @@ body {
   color: #999;
 }
 
-/* line 116 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 129 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
 
 .ui-state-focus {
   color: White !important;
@@ -1608,7 +1627,29 @@ body {
   color: #999;
 }
 
-/* line 122 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+/* line 135 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvp.styl */
+
+/* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+@media screen and (max-device-width: 800px) {
+  /* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container {
+    height: 625px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1080px;
+    max-height: 625px;
+  }
+
+  /* line 6 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .rsvp-background {
+    display: none;
+  }
+}
+
+/* line 8 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\mainMedia.styl */
 

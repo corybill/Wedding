@@ -14,14 +14,19 @@
     .guest-container(ng-show="userHasAuthenticated")
         input.rsvp-names(placeholder="Search for addressed name.")
         br
-        br
 
-        .how-many-people(ng-show="currentPerson")
+        .how-many-people(ng-show="selectedPerson")
+            br
             p.num-guests-label INCLUDING YOURSELF, HOW MANY GUESTS WILL BE CELEBRATING WITH US?
             br
-            textarea.guest-notes
             input.num-guests
-            button.save-guest(ng-click="verifySaving()") SAVE
+            button.save-next(ng-click="goToGuestNotes()") NEXT
+
+        .guest-notes(ng-show="guestNotes")
+            br
+            textarea.guest-notes-area(placeholder="ANYTHING YOU'D LIKE TO TELL US (E.G. FOOD ALLERGIES)?")
+            br
+            button.save-guest-info(ng-click="verifySaving()") SAVE
 
     .verification-container(ng-show="userSaving")
         p.verification-label PLEASE VERIFY THAT YOU HAVE ENTERED THE CORRECT NAME AND NUMBER OF GUESTS.
