@@ -1635,21 +1635,60 @@ body {
   /* line 2 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
 
   .rsvp-container {
-    height: 625px;
     margin-left: auto;
     margin-right: auto;
     max-width: 1080px;
     max-height: 625px;
   }
 
-  /* line 6 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+  /* line 5 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .rsvp-background {
+    position: static;
+  }
+
+  /* line 8 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .passcode-container {
+    left: 10px;
+    top: 700px;
+  }
+
+  /* line 12 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .guest-container {
+    left: 10px;
+    top: 700px;
+  }
+
+  /* line 16 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .verification-container {
+    left: 10px;
+    top: 700px;
+  }
+
+  /* line 20 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
 
   .rsvp-container .rsvp-background {
     display: none;
   }
+
+  /* line 23 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container .passcode-button {
+    height: 95px;
+  }
+
+  /* line 26 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+
+  .rsvp-container input {
+    width: 300px;
+    height: 55px;
+  }
 }
 
-/* line 8 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
+/* line 29 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\main\client\styles\mainMedia.styl */
 
@@ -1764,9 +1803,15 @@ body {
   .story {
     clear: both;
   }
+
+  /* line 5 : c:\Users\Cory\IdeaProjects\Wedding\modules\story\client\styles\storyMedia.styl */
+
+  .story .play-button {
+    display: none;
+  }
 }
 
-/* line 4 : c:\Users\Cory\IdeaProjects\Wedding\modules\story\client\styles\storyMedia.styl */
+/* line 7 : c:\Users\Cory\IdeaProjects\Wedding\modules\story\client\styles\storyMedia.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\details\client\styles\detailsMedia.styl */
 
