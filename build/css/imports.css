@@ -1682,9 +1682,9 @@ body {
 
   /* line 26 : c:\Users\Cory\IdeaProjects\Wedding\modules\rsvp\client\styles\rsvpMedia.styl */
 
-  .rsvp-container input {
-    width: 300px;
-    height: 55px;
+  .rsvp-container .response {
+    left: 10px;
+    top: 700px;
   }
 }
 
@@ -2240,9 +2240,17 @@ body {
     top: 100px;
     left: 550px;
   }
+
+  /* line 14 : c:\Users\Cory\IdeaProjects\Wedding\modules\registry\client\styles\registryMedia.styl */
+
+  /* line 15 : c:\Users\Cory\IdeaProjects\Wedding\modules\registry\client\styles\registryMedia.styl */
+
+  .registry .registry-background img {
+    height: 650px;
+  }
 }
 
-/* line 13 : c:\Users\Cory\IdeaProjects\Wedding\modules\registry\client\styles\registryMedia.styl */
+/* line 17 : c:\Users\Cory\IdeaProjects\Wedding\modules\registry\client\styles\registryMedia.styl */
 
 /* line 1 : c:\Users\Cory\IdeaProjects\Wedding\modules\entourage\client\styles\personMedia.styl */
 
