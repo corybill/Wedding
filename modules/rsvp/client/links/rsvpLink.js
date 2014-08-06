@@ -87,7 +87,8 @@ module.exports = function (scope, element, attrs, rsvpController) {
   };
 
   scope.verifySaving = function () {
-    scope.currentPerson.notes = $guestNotesArea.val();
+    var newNotes = $guestNotesArea.val();
+    scope.currentPerson.notes = (!newNotes || newNotes === "") ? scope.currentPerson.notes : newNotes;
     scope.userSaving = true;
     scope.userHasAuthenticated = false;
   };

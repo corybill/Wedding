@@ -8,7 +8,7 @@ module.exports = {
     var deferred = Q.defer();
     var collection = db.collection('guests');
 
-    collection.find({}, {name: 1}).toArray(function(err, docs) {
+    collection.find().toArray(function(err, docs) {
       if (err) {
         deferred.reject(err);
       }
