@@ -17,10 +17,15 @@
 
         .how-many-people(ng-show="selectedPerson")
             br
-            p.num-guests-label IN TOTAL, HOW MANY GUESTS WILL BE CELEBRATING WITH US?
-            br
-            input.num-guests
-            button.save-next(ng-click="goToGuestNotes()") NEXT
+            div.button-container
+                input.accept-radio(type="radio", name="accept-filter", ng-value="1", checked, ng-model="acceptDecline")
+                label.accept-label ACCEPT WITH PLEASURE
+
+            div.button-container
+                input.decline-radio(type="radio", name="accept-filter", ng-value="0", ng-model="acceptDecline")
+                label.decline-label DECLINE WITH REGRET
+
+            button.save-next(ng-click="acceptDeclineVerification()") NEXT
 
         .guest-notes(ng-show="guestNotes")
             br

@@ -12,6 +12,7 @@ module.exports = function (scope, element, attrs, rsvpController) {
   var $guestContainer = element.find(".guest-container");
   var $passcodeInput = element.find(".passcode-input");
   var $guestNotesArea = element.find(".guest-notes-area");
+  var $acceptRadio = element.find(".accept-radio");
   var peopleObj = {};
 
   scope.userHasNotAuthenticated = true;
@@ -74,6 +75,13 @@ module.exports = function (scope, element, attrs, rsvpController) {
 
   scope.verifyPasscode = function () {
     rsvpController.verifyPasscode(scope.passcode, verifyPasscodeSuccess, verifyPasscodeFail);
+  };
+
+  scope.acceptDeclineVerification = function () {
+    if (scope.acceptDecline === "1") {
+
+    }
+    console.log(scope.acceptDecline);
   };
 
   scope.goToGuestNotes = function () {
