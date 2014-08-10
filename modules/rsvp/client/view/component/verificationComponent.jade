@@ -1,0 +1,19 @@
+.verification-container
+    .verification-accept(ng-show = "verificationAcceptVisible")
+        p.verification-label PLEASE CONFIRM SELECTIONS.
+        br
+        label.verification-label.strong NAME:
+        label.verification-label {{currentPerson.name}}
+        br
+        label.verification-label.strong NUMBER OF GUESTS:
+        label.verification-label {{currentPerson.numGuests}}
+        br
+        label.verification-label.strong GUEST NOTES:
+        label.verification-label {{currentPerson.notes}}
+
+    .verification-decline(ng-show = "verificationDeclineVisible")
+        p.verification-label WE ARE SORRY YOU ARE UNABLE TO ATTEND. PLEASE CONFIRM SELECTION.
+
+    br
+    button.cancel-save(ng-click="cancelSave()") CANCEL
+    button.confirm-save(ng-click="saveGuest()") CONFIRM

@@ -2,140 +2,107 @@
 
 var common = require("../../../common/client/common/common");
 var _ = require("lodash");
-module.exports = function (scope, element, attrs, rsvpController) {
+module.exports = function (scope, element) {
   common.resetBackground(element);
 
-  var $rsvpNames = element.find(".rsvp-names");
-  var $numGuests = element.find(".num-guests");
-  var $passcodeContainer = element.find(".passcode-container");
-  var $passcodeWrong = element.find(".passcode-wrong");
-  var $guestContainer = element.find(".guest-container");
-  var $passcodeInput = element.find(".passcode-input");
-  var $guestNotesArea = element.find(".guest-notes-area");
-  var $acceptRadio = element.find(".accept-radio");
-  var peopleObj = {};
-
-  scope.userHasNotAuthenticated = true;
+  var $rsvpContainer = $(".rsvp-functional-container");
+  var $window = $(window);
 
   function init() {
-    function getAllNamesSuccess(response) {
+    var halfWindow = $window.width() / 2;
 
-      var autoCompleteData = _.map(response.result, function (item) {
-        peopleObj[item.name] = item;
-        return {label : item.name, value : item.name, id : item._id};
-      });
+    var leftPosition = halfWindow - 420;
+    $rsvpContainer.css({left : leftPosition});
+  }
 
-      $rsvpNames.autocomplete({
-        source: autoCompleteData,
-        select: function( event, ui ) {
-          setCurrentPerson(ui.item.value);
-        },
-        search: function (event) {
-          setCurrentPerson(event.currentTarget.value);
-        }
-      });
+  scope.peopleObj = {};
 
-      $numGuests.spinner({ max: 10, min: 0 }).val(0);
+  scope.passcodeVisible = true;
+  scope.rsvpNamesVisible = false;
+  scope.acceptDeclineVisible = false;
+  scope.guestInfoVisible = false;
+
+  scope.$on("passcode:success", function () {
+    scope.passcodeVisible = false;
+    scope.rsvpNamesVisible = true;
+
+    scope.$broadcast("rsvp-names:start");
+  });
+
+  scope.$on("accept-decline:complete", function (event, attending) {
+    if (attending) {
+      scope.guestInfoVisible = true;
+      resetFromAccept();
+      scope.$broadcast("guest-info:start");
+
+    } else {
+      scope.verificationDeclineVisible = true;
+      resetFromDecline();
     }
 
-    function getAllNamesFail(err){
-      console.log(err);
-    }
+    apply();
+  });
 
-    rsvpController.getAllNames(getAllNamesSuccess, getAllNamesFail);
+  scope.$on("guest-info:complete", function () {
+    resetGuestContainer();
+    scope.acceptDeclineVisible = false;
+    scope.verificationAcceptVisible = true;
+  });
+
+  scope.$on("verification:cancel", function () {
+    resetGuestContainer();
+  });
+
+  scope.$on("verification:complete", function (event, success) {
+    hideGuestContainer();
+
+    if (success && scope.currentPerson.attending) {
+      scope.successAcceptResponse = true;
+    } else if (success && !scope.currentPerson.attending) {
+      scope.successDeclineResponse = true;
+    } else {
+      scope.failResponse = true;
+    }
+  });
+
+  scope.setCurrentPerson = function (name) {
+    scope.currentPerson = (!name) ? name : scope.peopleObj[name.toUpperCase()];
+
+    if (scope.currentPerson) {
+      scope.acceptDeclineVisible = true;
+    } else {
+      resetGuestContainer();
+    }
+    apply();
+  };
+
+  function apply() {
+    //If digest is not already in process, then start it by calling apply.
+    if(!scope.$$phase) {
+      scope.$apply();
+    }
+  }
+  function resetGuestContainer() {
+    scope.rsvpNamesVisible = true;
+    scope.acceptDeclineVisible = true;
+    scope.guestInfoVisible = false;
+    scope.verificationAcceptVisible = false;
+    scope.verificationDeclineVisible = false;
+  }
+  function hideGuestContainer() {
+    scope.rsvpNamesVisible = false;
+    scope.acceptDeclineVisible = false;
+    scope.guestInfoVisible = false;
+    scope.verificationAcceptVisible = false;
+    scope.verificationDeclineVisible = false;
+  }
+  function resetFromDecline() {
+    scope.guestInfoVisible = false;
+    scope.verificationAcceptVisible = false;
+  }
+  function resetFromAccept() {
+    scope.verificationDeclineVisible = false;
   }
 
   init();
-
-  function setCurrentPerson(name) {
-    scope.currentPerson = (!name) ? name : peopleObj[name.toUpperCase()];
-
-    scope.guestNotes = false;
-    scope.selectedPerson = (scope.currentPerson) ? true : false;
-
-    scope.$apply();
-
-    if (scope.currentPerson) {
-      setTimeout(function () {
-        $numGuests.focus();
-      },500);
-    }
-  }
-
-  function saveSuccess(response) {
-    scope.userSaving = false;
-    scope.successResponse = true;
-    console.log("Save success: " + response);
-  }
-  function saveFail(err) {
-    scope.userSaving = false;
-    scope.failResponse = true;
-    console.log("Save fail: " + err);
-  }
-
-  scope.verifyPasscode = function () {
-    rsvpController.verifyPasscode(scope.passcode, verifyPasscodeSuccess, verifyPasscodeFail);
-  };
-
-  scope.acceptDeclineVerification = function () {
-    if (scope.acceptDecline === "1") {
-
-    }
-    console.log(scope.acceptDecline);
-  };
-
-  scope.goToGuestNotes = function () {
-    scope.currentPerson.numGuests = $numGuests.val();
-    scope.selectedPerson = false;
-    scope.guestNotes = true;
-
-    setTimeout(function () {
-      $guestNotesArea.focus();
-    },500);
-  };
-
-  scope.verifySaving = function () {
-    var newNotes = $guestNotesArea.val();
-    scope.currentPerson.notes = (!newNotes || newNotes === "") ? scope.currentPerson.notes : newNotes;
-    scope.userSaving = true;
-    scope.userHasAuthenticated = false;
-  };
-
-  function verifyPasscodeSuccess(response) {
-    if (response.result === "VALID") {
-      scope.userHasNotAuthenticated = false;
-      scope.userHasAuthenticated = true;
-      setTimeout(function () {
-        $rsvpNames.focus();
-      },500);
-
-    } else {
-      $passcodeWrong.fadeIn(1000);
-      setTimeout(function () {
-        $passcodeWrong.fadeOut(1000);
-      }, 1500);
-    }
-  }
-  function verifyPasscodeFail(err) {
-    console.log(err);
-  }
-
-  scope.savePerson = function () {
-    rsvpController.save(scope.currentPerson, saveSuccess, saveFail);
-  };
-  scope.cancelSave = function () {
-    scope.userSaving = false;
-    scope.selectedPerson = true;
-    scope.guestNotes = false;
-    scope.userHasAuthenticated = true;
-  };
-
-  $rsvpNames.blur(function (event) {
-    setCurrentPerson(event.currentTarget.value);
-  });
-  $passcodeInput.keydown(function (event) {
-    if (event.keyCode === $.ui.keyCode.ENTER) {
-      rsvpController.verifyPasscode(scope.passcode, verifyPasscodeSuccess, verifyPasscodeFail);
-    }
-  });
 };

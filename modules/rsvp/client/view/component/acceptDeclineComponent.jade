@@ -1,0 +1,9 @@
+.accept-decline-container
+    br
+    div.button-container
+        input.accept-radio(type="radio", name="accept-filter", ng-value="true", checked, ng-model="acceptDeclineValue", ng-change="acceptDeclineChange(true)")
+        label.accept-label ACCEPT WITH PLEASURE
+
+    div.button-container
+        input.decline-radio(type="radio", name="accept-filter", ng-value="false", ng-model="acceptDeclineValue", ng-change="acceptDeclineChange(false)")
+        label.decline-label DECLINE WITH REGRET

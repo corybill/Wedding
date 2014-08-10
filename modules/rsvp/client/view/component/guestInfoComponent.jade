@@ -1,0 +1,10 @@
+.guest-info-container
+    .num-guests-container
+        input.num-guests
+        label.num-guests-label HOW MANY WILL BE ATTENDING?
+
+    .guest-notes-container
+        textarea.guest-notes-area(placeholder="ANYTHING YOU'D LIKE TO TELL US (E.G. FOOD ALLERGIES)?", ng-model="guestNotesVal")
+        br
+
+    button.save-guest-info(ng-click="finishedGuestNotes()") SAVE

@@ -5,8 +5,12 @@ var moduleName = "rsvp";
 module.exports = function (angular) {
   angular.module(moduleName, [])
     .directive("rsvp", require("./directives/rsvpDirective"))
+    .directive("rsvpNames", require("./directives/rsvpNamesDirective"))
+    .directive("acceptDecline", require("./directives/acceptDeclineDirective"))
+    .directive("passcode", require("./directives/passcodeDirective"))
+    .directive("guestInfo", require("./directives/guestInfoDirective"))
+    .directive("verification", require("./directives/verificationDirective"))
     .service("$rsvpService", require("./services/rsvpService"))
-    .controller('rsvpController', require('./controllers/rsvpController'))
     .config(function ($routeProvider) {
       $routeProvider
         .when("/rsvp", {templateUrl: "rsvp"});

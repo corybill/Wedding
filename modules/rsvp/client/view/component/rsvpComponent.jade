@@ -2,48 +2,20 @@
     .rsvp-background
         img(src="images/rsvp/content-background.jpg")
 
-    .passcode-container(ng-show="userHasNotAuthenticated")
-        input.passcode-input(ng-model="passcode", placeholder="Enter Passcode.")
-        button.passcode-button(ng-click="verifyPasscode()") ENTER
+    .rsvp-functional-container
+        div(ng-show = "passcodeVisible")
+            passcode()
 
-        br
-        br
+        .guest-container
+            div(ng-show = "rsvpNamesVisible")
+                rsvp-names()
+            div(ng-show = "acceptDeclineVisible")
+                accept-decline()
+            div(ng-show = "guestInfoVisible")
+                guest-info()
+            div(ng-show = "verificationDeclineVisible || verificationAcceptVisible")
+                verification()
 
-        label.passcode-wrong INCORRECT!
-
-    .guest-container(ng-show="userHasAuthenticated")
-        input.rsvp-names(placeholder="Search for addressed name.")
-        br
-
-        .how-many-people(ng-show="selectedPerson")
-            br
-            div.button-container
-                input.accept-radio(type="radio", name="accept-filter", ng-value="1", checked, ng-model="acceptDecline")
-                label.accept-label ACCEPT WITH PLEASURE
-
-            div.button-container
-                input.decline-radio(type="radio", name="accept-filter", ng-value="0", ng-model="acceptDecline")
-                label.decline-label DECLINE WITH REGRET
-
-            button.save-next(ng-click="acceptDeclineVerification()") NEXT
-
-        .guest-notes(ng-show="guestNotes")
-            br
-            textarea.guest-notes-area(placeholder="ANYTHING YOU'D LIKE TO TELL US (E.G. FOOD ALLERGIES)?")
-            br
-            button.save-guest-info(ng-click="verifySaving()") SAVE
-
-    .verification-container(ng-show="userSaving")
-        p.verification-label PLEASE VERIFY THAT YOU HAVE ENTERED THE CORRECT NAME AND NUMBER OF GUESTS.
-        br
-        label.verification-label.strong NAME:
-        label.verification-label {{currentPerson.name}}
-        br
-        label.verification-label.strong NUMBER OF GUESTS:
-        label.verification-label {{currentPerson.numGuests}}
-        br
-        button.cancel-save(ng-click="cancelSave()") CANCEL
-        button.confirm-save(ng-click="savePerson()") CONFIRM
-
-    p.response(ng-show="successResponse") SUCCESS! WE CAN'T WAIT TO SEE YOU!
-    p.response(ng-show="failResponse") SOMETHING WENT WRONG! REFRESH AND TRY AGAIN PLEASE.
+        p.response(ng-show="successAcceptResponse") SUCCESS! WE CAN'T WAIT TO SEE YOU!
+        p.response(ng-show="successDeclineResponse") THANK YOU FOR REPLYING!
+        p.response(ng-show="failResponse") SOMETHING WENT WRONG! REFRESH AND TRY AGAIN PLEASE.
