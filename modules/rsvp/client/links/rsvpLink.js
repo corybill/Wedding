@@ -71,7 +71,7 @@ module.exports = function (scope, element) {
     if (scope.currentPerson) {
       scope.acceptDeclineVisible = true;
     } else {
-      resetGuestContainer();
+      resetToNoCurrentPerson();
     }
     apply();
   };
@@ -85,6 +85,13 @@ module.exports = function (scope, element) {
   function resetGuestContainer() {
     scope.rsvpNamesVisible = true;
     scope.acceptDeclineVisible = true;
+    scope.guestInfoVisible = false;
+    scope.verificationAcceptVisible = false;
+    scope.verificationDeclineVisible = false;
+  }
+  function resetToNoCurrentPerson() {
+    scope.rsvpNamesVisible = true;
+    scope.acceptDeclineVisible = false;
     scope.guestInfoVisible = false;
     scope.verificationAcceptVisible = false;
     scope.verificationDeclineVisible = false;

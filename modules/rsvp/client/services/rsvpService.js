@@ -15,6 +15,17 @@ module.exports = function ($http) {
         });
     },
 
+    getResponded : function (success, fail) {
+      var route = api.getApiRoute("rsvp/responded");
+      $http.get(route).
+        success(function(data, status, headers, config) {
+          success(data);
+        }).
+        error(function(data, status, headers, config) {
+          fail(data);
+        });
+    },
+
     save : function (guest, success, fail) {
       var route = api.getApiRoute("rsvp");
       $http.post(route, {guest: guest}).

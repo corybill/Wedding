@@ -2,6 +2,7 @@
 
 var Q = require("q");
 var ObjectId = require("mongodb").ObjectID;
+var fs = require("fs");
 
 module.exports = {
   getAllNames : function (db) {
@@ -14,6 +15,25 @@ module.exports = {
       }
 
       deferred.resolve(docs);
+    });
+
+    return deferred.promise;
+  },
+  getResponded : function (db) {
+    var deferred = Q.defer();
+    var collection = db.collection('guests');
+
+    var query = {
+      numGuests : {$exists : true}
+    };
+
+    collection.find(query).toArray(function(err, docs) {
+      if (err) {
+        deferred.reject(err);
+      }
+
+      helper.generateCsvSync(docs);
+      deferred.resolve();
     });
 
     return deferred.promise;
@@ -36,5 +56,32 @@ module.exports = {
   verifyPasscode : function (passcode) {
     var result = (passcode.toLowerCase() === "bigfluffydog" || passcode.toLowerCase() === "boobies") ? "VALID" : "INVALID";
     return new Q(result);
+  }
+};
+
+var helper = {
+  generateCsvSync: function (data) {
+    var fileName = "./public/csv/attendance.csv";
+
+    try {
+      console.log("I AM HERE!");
+      console.log(__dirname);
+
+      if (fs.existsSync(fileName)) {
+        fs.unlinkSync(fileName);
+      }
+
+      var csv = "NAME, # INVITED, # COMING, NOTES, ATTENDING\n";
+
+      data.forEach(function (doc) {
+        doc.notes = doc.notes.replace(",", "");
+        var value = doc.name + "," + doc.numInvited + "," + doc.numGuests + "," + doc.notes + "," + doc.attending + "\n";
+        csv += value;
+      });
+      fs.appendFileSync(fileName, csv);
+
+    } catch (err) {
+      console.log(err);
+    }
   }
 };

@@ -18,6 +18,14 @@ module.exports = {
         }).done();
       });
 
+      app.get(api.getApiRoute("rsvp/responded"), function (req, res) {
+        rsvpService.getResponded(db).then(function () {
+          api.sendSuccess(res);
+        }).fail(function (err) {
+          api.sendError(res, err);
+        }).done();
+      });
+
       app.post(api.getApiRoute("rsvp"), function (req, res) {
         rsvpService.save(req.body.guest, db).then(function (result) {
           api.sendSuccess(res, result);

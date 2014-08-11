@@ -1,0 +1,14 @@
+"use strict";
+
+module.exports = function ($rsvpService, $window) {
+  this.getResponded = function (success, fail) {
+    $rsvpService.getResponded(success, fail);
+  };
+
+  this.getResponded(function () {
+    $window.location = "http://www.justineandcorybill.com/csv/attendance.csv";
+  }, function (err) {
+    console.log(err);
+  });
+
+};

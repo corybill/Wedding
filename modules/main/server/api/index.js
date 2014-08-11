@@ -1,5 +1,7 @@
 "use strict";
 
+var fs = require('fs');
+
 var version = "v1";
 module.exports = {
   getApiRoute : function (route) {
