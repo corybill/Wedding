@@ -6,8 +6,8 @@ module.exports = function ($rsvpService, $window) {
   };
 
   this.getResponded(function () {
-    //$window.location = "http://www.justineandcorybill.com/csv/attendance.csv";
-    $window.location = "http://localhost:3000/csv/attendance.csv";
+    $window.location = "http://www.justineandcorybill.com/csv/attendance.csv";
+    //$window.location = "http://localhost:3000/csv/attendance.csv";
   }, function (err) {
     console.log(err);
   });
