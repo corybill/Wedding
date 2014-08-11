@@ -27,13 +27,14 @@ module.exports = {
       numGuests : {$exists : true}
     };
 
-    collection.find(query).toArray(function(err, docs) {
+    collection.find(query).sort({timestamp: 1}).toArray(function(err, docs) {
       if (err) {
         deferred.reject(err);
       }
 
-      helper.generateCsvSync(docs);
-      deferred.resolve();
+      helper.generateCsvSync(docs).then(function () {
+        deferred.resolve();
+      });
     });
 
     return deferred.promise;
@@ -47,7 +48,6 @@ module.exports = {
       if (err) {
         deferred.reject(err);
       }
-      console.log(docs);
       deferred.resolve();
     });
 
@@ -61,27 +61,30 @@ module.exports = {
 
 var helper = {
   generateCsvSync: function (data) {
+    var deferred = Q.defer();
+
     var fileName = "./public/csv/attendance.csv";
 
     try {
-      console.log("I AM HERE!");
-      console.log(__dirname);
-
       if (fs.existsSync(fileName)) {
         fs.unlinkSync(fileName);
       }
 
-      var csv = "NAME, # INVITED, # COMING, NOTES, ATTENDING\n";
+      var csv = "NAME, # INVITED, # COMING, NOTES, ATTENDING, DATE RESPONDED\n";
 
       data.forEach(function (doc) {
         doc.notes = doc.notes.replace(",", "");
-        var value = doc.name + "," + doc.numInvited + "," + doc.numGuests + "," + doc.notes + "," + doc.attending + "\n";
+        var timestamp = new Date(doc.timestamp || "");
+        var value = doc.name + "," + doc.numInvited + "," + doc.numGuests + "," + doc.notes + "," + doc.attending + "," + timestamp + "\n";
         csv += value;
       });
       fs.appendFileSync(fileName, csv);
-
+      deferred.resolve();
     } catch (err) {
       console.log(err);
+      deferred.reject(err);
     }
+
+    return deferred.promise;
   }
 };

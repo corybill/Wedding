@@ -6,6 +6,7 @@ module.exports = function (scope, element, attrs, rsvpController) {
     scope.$emit("verification:cancel");
   };
   scope.saveGuest = function () {
+    scope.currentPerson.timestamp = new Date().getTime();
     rsvpController.save(scope.currentPerson, saveSuccess, saveFail);
   };
 
