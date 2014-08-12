@@ -66,6 +66,9 @@ var helper = {
     var fileName = "./public/csv/attendance.csv";
 
     try {
+      if (!fs.existsSync("./public/csv")) {
+        fs.mkdirSync("./public/csv");
+      }
       if (fs.existsSync(fileName)) {
         fs.unlinkSync(fileName);
       }
