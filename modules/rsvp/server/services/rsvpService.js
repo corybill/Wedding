@@ -76,7 +76,7 @@ var helper = {
       var csv = "NAME, # INVITED, # COMING, NOTES, ATTENDING, DATE RESPONDED\n";
 
       data.forEach(function (doc) {
-        doc.notes = doc.notes.replace(",", "");
+        doc.notes = (doc.notes) ? doc.notes.replace(",", "") : "";
         var timestamp = new Date(doc.timestamp || "");
         var value = doc.name + "," + doc.numInvited + "," + doc.numGuests + "," + doc.notes + "," + doc.attending + "," + timestamp + "\n";
         csv += value;
